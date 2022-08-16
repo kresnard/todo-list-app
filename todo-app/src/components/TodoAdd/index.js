@@ -1,9 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Index = () => {
+const Index = props => {
+    const [todo, setTodo] = useState({
+        id: '',
+        name: '',
+        desc: ''
+    });
+
+    const handleSubmit = e => {
+        e.preeventDefault();
+        if (!todo.name || !todo.desc) {
+            alert('Please fill in all fields');
+            return;
+        } else {
+            props.addHandler(todo);
+        }
+        setTodo({
+            id: '',
+            name: '',
+            desc: ''
+        });
+    };
+
+
     return (
-        <div>index</div>
-    )
-}
+        <form className='form-container' onsSubmit={e => handleSubmit(e)}>
+            <div className='form-field'>
+                <label>Name</label>
+                <input 
+                type='text' 
+                name='name' 
+                placeholder='What your plan?'
+                onChange={e => setTodo({...todo, name: e.target.value})}
+                />
+            </div>
+            <div className='form-field'>
+                <label>Description</label>
+                <input 
+                type='text' 
+                name='name' 
+                placeholder='What your plan?'
+                onChange={e => setTodo({...todo, desc: e.target.value})}
+                />
+            </div>
+            <button type='submit' className='form-button'>
+                add
+            </button>
+        </form>
+    );
+};
 
 export default Index;
