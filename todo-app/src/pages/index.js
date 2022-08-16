@@ -9,13 +9,18 @@ import './style.css'
 const Index = () => {
     const LOCAL_STORAGE_KEY = 'list-todos';
     const [todos, setTodos] = useState([]);
+    const [todo, setTodo] = useState({
+        id: '',
+        name: '',
+        desc: ''
+    });
 
     const addTodoHandler = todo => {
         const newTodo = [{ id: uuidv4(), name: todo.name, desc: todo.desc }];
         setTodos([...todos, ...newTodo]);
         localStorage.setItem(
-        LOCAL_STORAGE_KEY,
-        JSON.stringify([...todos, ...newTodo])
+            LOCAL_STORAGE_KEY,
+            JSON.stringify([...todos, ...newTodo])
         );
     };
 
@@ -25,6 +30,12 @@ const Index = () => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedTodos));
     };
 
+    const updateTodo = (todoObject, newValue) => {
+        const newTodo = todos.map(item => item.id === newValue ? {...item, name: todo.name, desc: todo.desc} : item)
+        setTodos(todos.map(item => item.id === newValue ? {...item, name: todo.name, desc: todo.desc} : item))
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTodo))
+    }
+
     useEffect(() => {
         const listTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
         listTodos && setTodos(listTodos);
@@ -33,8 +44,8 @@ const Index = () => {
     return (
         <div className='container-pages'>
         <h1>Hello, Create Your Activity</h1>
-        <TodoAdd addHandler={addTodoHandler} />
-        <TodoList todos={todos} deleteTodos={deleteTodoHandler} />
+        <TodoAdd addHandler={addTodoHandler} todo={todo} setTodo={setTodo} />
+        <TodoList todos={todos} deleteTodos={deleteTodoHandler} editTodos={updateTodo} />
         </div>
     );
 };

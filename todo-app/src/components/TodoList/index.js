@@ -10,6 +10,10 @@ const Index = props => {
         props.deleteTodos(id);
     };
 
+    const _editTodoHandler = (param, id) => {
+        props.editTodos(param, id)
+    }
+
     return (
         <div>
         {props.todos.map(todo => {
@@ -19,6 +23,7 @@ const Index = props => {
                 name={todo.name}
                 desc={todo.desc}
                 deleteHandler={() => _deleteTodoHandler(todo.id)}
+                editHandler={() => _editTodoHandler(todo, todo.id)}
             />
             );
         })}

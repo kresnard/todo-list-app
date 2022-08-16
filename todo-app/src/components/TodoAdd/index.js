@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Index = props => {
-    const [todo, setTodo] = useState({
-        id: '',
-        name: '',
-        desc: ''
-    });
+const Index = ({addHandler, todo, setTodo}) => {
+    // const [todo, setTodo] = useState({
+    //     id: '',
+    //     name: '',
+    //     desc: ''
+    // });
 
     // console.log(props);
     const handleSubmit = e => {
         e.preventDefault();
         if (!todo.name || !todo.desc) {
-        alert('Please fill in all fields');
-        return;
+            alert('Please fill in all fields');
+            return;
         } else {
-        props.addHandler(todo);
+        addHandler(todo);
         }
         setTodo({
-        id: '',
-        name: '',
-        desc: ''
+            id: '',
+            name: '',
+            desc: ''
         });
     };
 
