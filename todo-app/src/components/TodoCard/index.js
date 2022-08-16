@@ -1,18 +1,22 @@
 import React from 'react'
 
-const Index = () => {
+const Index = props => {
+    console.log('props from card', props);
+    const { name, desc, id } = props;
     return (
         <div className='card-container'>
             <div className='card-header'>
                 <h1>Todo Card</h1>
             </div>
             <div className='card-content'>
-                <div className='card-field'>Name: </div>
-                <div className='card-field'>Description: </div>
+                <div className='card-field'>Name: {name} </div>
+                <div className='card-field'>Description: {desc} </div>
             </div>
-            <button className='card-delete'>delete</button>
+            <button className='card-delete' onClick={() => props.deleteHandler(id)}>
+                delete
+            </button>
         </div>
-    )
-}
+    );
+};
 
 export default Index;
