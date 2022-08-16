@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import TodoAdd from '../components/TodoAdd';
 import TodoList from '../components/TodoList';
 
+import './style.css'
+
 const Index = () => {
     const LOCAL_STORAGE_KEY = 'list-todos';
     const [todos, setTodos] = useState([]);
@@ -29,7 +31,7 @@ const Index = () => {
     }, [setTodos]);
 
     return (
-        <div>
+        <div className='container-pages'>
         <h1>Hello, Create Your Activity</h1>
         <TodoAdd addHandler={addTodoHandler} />
         <TodoList todos={todos} deleteTodos={deleteTodoHandler} />

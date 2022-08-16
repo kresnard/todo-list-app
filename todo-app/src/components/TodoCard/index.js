@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './style.css'
+
 const Index = props => {
     console.log('props from card', props);
     const { name, desc, id } = props;
@@ -14,6 +16,9 @@ const Index = props => {
         </div>
         <button className='card-delete' onClick={() => props.deleteHandler(id)}>
             Delete
+        </button>
+        <button className='card-delete'>
+            Edit
         </button>
         </div>
     );
