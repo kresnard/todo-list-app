@@ -8,7 +8,7 @@ const Index = props => {
     });
 
     const handleSubmit = e => {
-        e.preeventDefault();
+        e.preventDefault();
         if (!todo.name || !todo.desc) {
             alert('Please fill in all fields');
             return;
@@ -24,7 +24,7 @@ const Index = props => {
 
 
     return (
-        <form className='form-container' onsSubmit={e => handleSubmit(e)}>
+        <form className='form-container' onSubmit={e => handleSubmit(e)}>
             <div className='form-field'>
                 <label>Name</label>
                 <input 
