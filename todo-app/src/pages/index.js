@@ -43,7 +43,8 @@ const Index = () => {
 
     return (
         <div className='container-pages'>
-        <h1>Hello, Create Your Activity</h1>
+        <h1>Hello!</h1>
+        <h1>Come to Create Your Todo List Below</h1>
         <TodoAdd addHandler={addTodoHandler} todo={todo} setTodo={setTodo} />
         <TodoList todos={todos} deleteTodos={deleteTodoHandler} editTodos={updateTodo} />
         </div>

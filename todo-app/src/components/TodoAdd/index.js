@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css'
 
 const Index = ({addHandler, todo, setTodo}) => {
     // const [todo, setTodo] = useState({
@@ -30,6 +31,7 @@ const Index = ({addHandler, todo, setTodo}) => {
             <input
             type='text'
             name='name'
+            value={todo.name}
             placeholder='What your plan?'
             onChange={e => setTodo({ ...todo, name: e.target.value })}
             />
@@ -39,6 +41,7 @@ const Index = ({addHandler, todo, setTodo}) => {
             <input
             type='text'
             name='description'
+            value={todo.desc}
             placeholder='How it will goin?'
             onChange={e => setTodo({ ...todo, desc: e.target.value })}
             />
