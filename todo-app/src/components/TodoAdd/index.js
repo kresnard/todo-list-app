@@ -1,28 +1,8 @@
 import React from 'react';
 import './style.css'
 
-const Index = ({addHandler, todo, setTodo}) => {
-    // const [todo, setTodo] = useState({
-    //     id: '',
-    //     name: '',
-    //     desc: ''
-    // });
-
-    // console.log(props);
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (!todo.name || !todo.desc) {
-            alert('Please fill in all fields');
-            return;
-        } else {
-        addHandler(todo);
-        }
-        setTodo({
-            id: '',
-            name: '',
-            desc: ''
-        });
-    };
+const Index = ({handleSubmit, todo, setTodo}) => {
+    
 
     return (
         <form className='form-container' onSubmit={e => handleSubmit(e)}>
@@ -32,7 +12,7 @@ const Index = ({addHandler, todo, setTodo}) => {
             type='text'
             name='name'
             value={todo.name}
-            placeholder='What your plan?'
+            placeholder='What is your plan?'
             onChange={e => setTodo({ ...todo, name: e.target.value })}
             />
         </div><br />
@@ -47,7 +27,7 @@ const Index = ({addHandler, todo, setTodo}) => {
             />
         </div><br />
         <button type='submit' className='form-button'>
-            Add
+            {todo.id ? 'edit' : "add"}
         </button>
         </form>
     );

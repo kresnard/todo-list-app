@@ -10,8 +10,8 @@ const Index = props => {
         props.deleteTodos(id);
     };
 
-    const _editTodoHandler = (param, id) => {
-        props.editTodos(param, id)
+    const _editTodoHandler = (id) => {
+        props.editTodos(id)
     }
 
     return (
@@ -23,7 +23,7 @@ const Index = props => {
                 name={todo.name}
                 desc={todo.desc}
                 deleteHandler={() => _deleteTodoHandler(todo.id)}
-                editHandler={() => _editTodoHandler(todo, todo.id)}
+                editHandler={() => _editTodoHandler(todo.id)}
             />
             );
         })}

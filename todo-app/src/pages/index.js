@@ -30,11 +30,29 @@ const Index = () => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedTodos));
     };
 
-    const updateTodo = (todoObject, newValue) => {
-        const newTodo = todos.map(item => item.id === newValue ? {...item, name: todo.name, desc: todo.desc} : item)
-        setTodos(todos.map(item => item.id === newValue ? {...item, name: todo.name, desc: todo.desc} : item))
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTodo))
+    const updateTodo = (id) => {
+        const newTodo = todos.find(item => item.id === id)
+        setTodo(newTodo)
     }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        if (!todo.name || !todo.desc) {
+            alert('Please fill in all fields');
+            return;
+        } else if ( !todo.id ) {
+        addTodoHandler(todo);
+        } else {
+            const dataUpdates = todos.map((t) => t.id === todo.id ? {...t, name: todo.name, desc: todo.desc} : t)
+            setTodos(dataUpdates)
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataUpdates))
+        }
+        setTodo({
+            id: '',
+            name: '',
+            desc: ''
+        });
+    };
 
     useEffect(() => {
         const listTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -45,7 +63,7 @@ const Index = () => {
         <div className='container-pages'>
         <h1>Hello!</h1>
         <h1>Come to Create Your Todo List Below</h1>
-        <TodoAdd addHandler={addTodoHandler} todo={todo} setTodo={setTodo} />
+        <TodoAdd addHandler={addTodoHandler} todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} />
         <TodoList todos={todos} deleteTodos={deleteTodoHandler} editTodos={updateTodo} />
         </div>
     );
